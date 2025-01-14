@@ -51,9 +51,11 @@
             <!-- Top Header Area -->
             @livewire('admin.layouts.header')
 
-
-            <!-- Main Content Area -->
-            {{ $slot }}
+            <div class="main-content">
+                <!-- Main Content Area -->
+                @include('livewire.admin.layouts.breadcrumb')
+                {{ $slot }}
+            </div>
         </div>
     </div>
     @include('livewire.admin.layouts.scripts')

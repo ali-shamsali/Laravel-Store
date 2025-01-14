@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',  \App\Livewire\Home\Home\Index::class)->name('home');
+Route::get('/',  \App\Livewire\Home\Home\Index::class)->name('home.home');
 
 Route::middleware([
     'auth:sanctum',

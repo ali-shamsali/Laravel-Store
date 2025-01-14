@@ -3,11 +3,16 @@
 namespace App\Livewire\Admin\Layouts;
 
 use Livewire\Component;
+use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Facades\Auth;
+Verta::setFormat('Y/n/j');
 
 class Header extends Component
 {
     public function render()
     {
-        return view('livewire.admin.layouts.header');
+        //$user = auth()->user();
+        $user = auth::user();
+        return view('livewire.admin.layouts.header',compact('user'));
     }
 }

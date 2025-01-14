@@ -20,7 +20,7 @@
             <ul class="left-side-navbar d-flex align-items-center">
                 <li class="hide-phone app-search">
                     <div class="dashboard-clock ltr">
-                        <span>دوشنبه 15 آبان</span><br>
+                        <span>{{ verta() }}</span><br>
                         <ul class="d-flex align-items-center justify-content-end">
                             <li id="hours">12</li>
                             <li>:</li>
@@ -77,7 +77,7 @@
                                 </div>
                                 <!-- Profile Text -->
                                 <div class="profile-text">
-                                    <h6>نام کاربر</h6>
+                                    <h6>{{ $user->name }}</h6>
                                     <span>توسعه دهنده</span>
                                 </div>
                             </div>
