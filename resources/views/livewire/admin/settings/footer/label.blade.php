@@ -40,7 +40,7 @@
                                             <label class="col-form-label">متن برگشت به بالا</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->upLabel }}" >
+                                            <input type="text" class="form-control" wire:model='upLabel'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -48,7 +48,7 @@
                                             <label class="col-form-label">تیتر فوتر اول</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->wigetLabel_1 }}" >
+                                            <input type="text" class="form-control"  wire:model='wigetLabel_1'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -56,7 +56,7 @@
                                             <label class="col-form-label">تیتر فوتر دوم</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->wigetLabel_2 }}" >
+                                            <input type="text" class="form-control"   wire:model='wigetLabel_2'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -64,7 +64,7 @@
                                             <label class="col-form-label">تیتر فوتر سوم</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->wigetLabel_3 }}" >
+                                            <input type="text" class="form-control"   wire:model='wigetLabel_3'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -72,7 +72,7 @@
                                             <label class="col-form-label">تیتر خبرنامه</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->rssLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='rssLabel'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -80,7 +80,7 @@
                                             <label class="col-form-label">تیتر شبکه های اجتماعی</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->socialLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='socialLabel'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -88,7 +88,7 @@
                                             <label class="col-form-label">تیتر پشتیبانی</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->supportLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='supportLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -96,7 +96,7 @@
                                             <label class="col-form-label">تیتر شماره تلفن</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->phoneLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='phoneLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -104,7 +104,7 @@
                                             <label class="col-form-label">تیتر آدرس</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->addressLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='addressLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -112,7 +112,7 @@
                                             <label class="col-form-label">تیتر ایمیل</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->emailLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='emailLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -120,7 +120,7 @@
                                             <label class="col-form-label">تیتر درباره فروشگاه</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->aboutheadLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='aboutheadLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -128,7 +128,7 @@
                                             <label class="col-form-label">متن درباره فروشگاه</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->aboutbodyLabel }}" >
+                                            <input type="text" class="form-control"  wire:model='aboutbodyLabel' >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -136,9 +136,10 @@
                                             <label class="col-form-label">متن کپی رایت</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control" value="{{ $footer->copyright }}" >
+                                            <input type="text" class="form-control" wire:model='copyright'>
                                         </div>
                                     </div>
+                                    <button type="submit" class="btn btn-outline-success mb-3" wire:click='update()'><i class="fa fa-save mr-3"></i>ذخیره</button>
                                 </div>
                             </div>
                         </div>
