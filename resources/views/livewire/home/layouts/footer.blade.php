@@ -88,10 +88,10 @@
                         <span class="newslitter-form-social">{{ $footer->socialLabel }}</span>
 
                         <div class="social-links">
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                            <a href="{{ $footer->Link_social_1 }}"><i class="{{ $footer->Text_social_1 }}"></i></a>
+                            <a href="{{ $footer->Link_social_2 }}"><i class="{{ $footer->Text_social_2 }}"></i></a>
+                            <a href="{{ $footer->Link_social_3 }}"><i class="{{ $footer->Text_social_3 }}"></i></a>
+                            <a href="{{ $footer->Link_social_4 }}"><i class="{{ $footer->Text_social_4 }}"></i></a>
                         </div>
                     </div>
                 </div>
@@ -103,10 +103,9 @@
                 <div class="footer-contact">
                     <ul>
                         <li>{{ $footer->supportLabel }}</li>
-                        <li style="float:right">{{ $footer->phoneLabel }} : <a href="#" class="phone-contact">۶۱۹۳۰۰۰۰ - ۰۲۱ ،
-                                ۹۵۱۱۹۰۹۵
-                                - ۰۲۱</a></li>
-                        <li class="email-title">{{ $footer->emailLabel }} : <a href="#">info@digistore.com</a></li>
+                        <li style="float:right">{{ $footer->phoneLabel }} : <a href="#" class="phone-contact">{{ $footer->Text_phone }}
+                            </a></li>
+                        <li class="email-title">{{ $footer->emailLabel }} : <a href="#">{{ $footer->Text_email }}</a></li>
                     </ul>
                 </div>
 

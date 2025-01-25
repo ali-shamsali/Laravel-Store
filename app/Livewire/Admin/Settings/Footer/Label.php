@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\Admin\Settings\Footer;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -60,5 +59,11 @@ class Label extends Component
             "aboutbodyLabel" => $this->aboutbodyLabel,
             "copyright"      => $this->copyright
         ]);
+
+/*         $this->dispatch('show-message', [
+            'message' => 'تنظیمات با موفقیت ذخیره شد',
+            'status' => 'success'
+        ]); */
+        //dd($fff);
     }
 }
