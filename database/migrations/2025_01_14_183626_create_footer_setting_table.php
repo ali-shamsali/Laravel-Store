@@ -40,6 +40,15 @@ return new class extends Migration
             $table->string('Text_address')->nullable();
             $table->timestamps();
         });
+
+        Schema::connection('mysql_settings')->create('footers-logo', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('type')->nullable();
+            $table->string('isActive')->nullable();
+            $table->string('image')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -48,5 +57,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::connection('mysql_settings')->dropIfExists('footers');
+        Schema::connection('mysql_settings')->dropIfExists('footers-logo');
     }
 };
