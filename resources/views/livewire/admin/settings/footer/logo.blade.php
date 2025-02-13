@@ -44,6 +44,16 @@
                                             </select>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="logoImage">انتخاب تصویر لوگو:</label>
+                                            <input type="file" wire:model='image' class="form-control" id="logoImage">
+                                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+
+                                            @if ($image)
+                                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail mt-2" width="150">
+                                            @endif
+                                        </div>
+
                                         <div class="checkbox checkbox-primary d-inline">
                                             <input type="checkbox" wire:model='isActive' name="checkbox-p-1"
                                                 id="checkbox-p-1" checked="">

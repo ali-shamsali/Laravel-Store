@@ -4,10 +4,12 @@ namespace App\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use App\Models\admin\settings\footerlogo;
+use Livewire\WithFileUploads ;
 
 class Logo extends Component
 {
-    public $title, $type, $isActive;
+    use WithFileUploads;
+    public $title, $type, $isActive , $image;
     public footerlogo $footerlogo;
 
     public function mount()
@@ -27,6 +29,11 @@ class Logo extends Component
     {
         $this->validate();
 
+        if ($this->image) {
+            $imagePath = $this->image->store('footer-logos', 'public');
+            $this->footerlogo->image = $imagePath;
+        }
+
         $this->footerlogo->title    = $this->title;
         $this->footerlogo->type     = $this->type;
         $this->footerlogo->isActive = $this->isActive;
@@ -35,7 +42,7 @@ class Logo extends Component
 
         session()->flash('message', 'لوگو با موفقیت ذخیره شد!');
 
-        $this->reset(['title', 'type', 'isActive']);
+        $this->reset(['title', 'type', 'isActive' , 'image']);
     }
 
     public function render()
