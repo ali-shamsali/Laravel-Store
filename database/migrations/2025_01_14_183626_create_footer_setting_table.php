@@ -47,6 +47,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('isActive')->nullable();
             $table->string('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

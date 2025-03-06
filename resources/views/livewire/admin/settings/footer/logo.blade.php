@@ -46,11 +46,15 @@
 
                                         <div class="form-group">
                                             <label for="logoImage">انتخاب تصویر لوگو:</label>
-                                            <input type="file" wire:model='image' class="form-control" id="logoImage">
-                                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+                                            <input type="file" wire:model='image' class="form-control"
+                                                id="logoImage">
+                                            @error('image')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
 
                                             @if ($image)
-                                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail mt-2" width="150">
+                                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail mt-2"
+                                                    width="150">
                                             @endif
                                         </div>
 
@@ -91,18 +95,24 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td>نام کاربری</td>
-                                            <td>سیستم</td>
-                                            <td>شرکت</td>
-                                            <td>1398/8/15</td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-delete zmdi-custom"></i></a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($logos as $logo)
+                                            <tr>
+                                                <td><img src="{{ asset('storage/' . $logo->image) }}" alt="" width="65px"> </td>
+                                                <td>{{ $logo->title }}</td>
+                                                <td>{{ $logo->type=="top" ?  'لوگوی بالای فوتر' : 'لوگوی پایین فوتر'}}</td>
+                                                <td>
+                                                    @if ($logo->isActive == 1)
+                                                        <span class="badge badge-success">فعال</span>
+                                                    @else
+                                                        <span class="badge badge-danger">غیرفعال</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <button wire:click='editlogo({{ $logo->id }})' class="action-icon"> <i class="zmdi zmdi-edit zmdi-custom"></i></button>
+                                                    <button wire:click='deletelogo({{ $logo->id }})'  class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 

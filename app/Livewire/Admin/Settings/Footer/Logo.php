@@ -40,13 +40,36 @@ class Logo extends Component
 
         $this->footerlogo->save();
 
+        $this->footerlogo = new footerlogo();
+
         session()->flash('message', 'لوگو با موفقیت ذخیره شد!');
 
         $this->reset(['title', 'type', 'isActive' , 'image']);
     }
 
+    public function deletelogo($id){
+        $logo = footerlogo::find($id);
+        $logo->delete();
+        session()->flash('message', 'لوگو با موفقیت حذف شد!');
+    }
+
+    public function editlogo($id){
+        $logo = footerlogo::find($id);
+        if($logo->isActive == "1"){
+            $logo->update([
+                'isActive' => "0",
+            ]);
+        }else{
+            $logo->update([
+                'isActive' => "1",
+            ]);
+        }
+        session()->flash('message', 'لوگو با موفقیت ویرایش شد!');
+    }
+
     public function render()
     {
-        return view('livewire.admin.settings.footer.logo');
+        $logos = footerlogo::all();
+        return view('livewire.admin.settings.footer.logo', compact('logos'));
     }
 }
