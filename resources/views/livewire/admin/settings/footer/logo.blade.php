@@ -52,6 +52,9 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
 
+                                            <div class="progress my-3" wire:loading wire:target='image'>
+                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">در حال بارگذاری ...</div>
+                                            </div>
                                             @if ($image)
                                                 <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail mt-2"
                                                     width="150">
