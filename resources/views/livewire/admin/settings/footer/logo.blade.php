@@ -96,7 +96,11 @@
                                             <th>عملیات</th>
                                         </tr>
                                     </thead>
-
+                                    <input type="text"
+                                        class="form-control my-2"
+                                        placeholder="جستجو..."
+                                        wire:model.live.debounce.300ms='search'
+                                    >
                                     <tbody>
                                         @foreach ($logos as $logo)
                                             <tr>

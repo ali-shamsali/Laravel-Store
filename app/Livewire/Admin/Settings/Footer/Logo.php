@@ -11,6 +11,7 @@ class Logo extends Component
     use WithFileUploads;
     public $title, $type, $isActive , $image;
     public footerlogo $footerlogo;
+    public $search = '';
 
     public function mount()
     {
@@ -69,7 +70,11 @@ class Logo extends Component
 
     public function render()
     {
-        $logos = footerlogo::all();
+        if($this->search != ''){
+            $logos = footerlogo::where('title', 'like', '%'.$this->search.'%')->get();
+        }else{
+            $logos = footerlogo::all();
+        }
         return view('livewire.admin.settings.footer.logo', compact('logos'));
     }
 }
