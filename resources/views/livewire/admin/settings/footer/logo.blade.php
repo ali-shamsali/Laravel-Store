@@ -122,7 +122,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
+                                {{ $logos->links() }}
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
                     </div><!-- end col-->

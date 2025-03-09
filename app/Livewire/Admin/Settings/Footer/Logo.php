@@ -5,10 +5,11 @@ namespace App\Livewire\Admin\Settings\Footer;
 use Livewire\Component;
 use App\Models\admin\settings\footerlogo;
 use Livewire\WithFileUploads ;
+use Livewire\WithPagination;
 
 class Logo extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads,WithPagination;
     public $title, $type, $isActive , $image;
     public footerlogo $footerlogo;
     public $search = '';
@@ -71,9 +72,9 @@ class Logo extends Component
     public function render()
     {
         if($this->search != ''){
-            $logos = footerlogo::where('title', 'like', '%'.$this->search.'%')->get();
+            $logos = footerlogo::where('title', 'like', '%'.$this->search.'%')->paginate(2);
         }else{
-            $logos = footerlogo::all();
+            $logos = footerlogo::paginate(2);
         }
         return view('livewire.admin.settings.footer.logo', compact('logos'));
     }
