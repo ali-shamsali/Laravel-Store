@@ -116,7 +116,11 @@
                                                 </td>
                                                 <td>
                                                     <button wire:click='editlogo({{ $logo->id }})' class="action-icon"> <i class="zmdi zmdi-edit zmdi-custom"></i></button>
-                                                    <button wire:click='deletelogo({{ $logo->id }})'  class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                    <button wire:click='deletelogo({{ $logo->id }})'
+                                                        data-toggle="modal"
+                                                        data-target="#exampleModal"
+                                                        class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -128,7 +132,7 @@
                     </div><!-- end col-->
                 </div>
                 <!-- end row-->
-
+                @include('livewire.admin.include.modal')
             </div>
         </div>
     </div>

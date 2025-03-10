@@ -13,7 +13,7 @@ class Logo extends Component
     public $title, $type, $isActive , $image;
     public footerlogo $footerlogo;
     public $search = '';
-
+    public $deleteId ;
     public function mount()
     {
         $this->footerlogo = new footerlogo();
@@ -50,7 +50,11 @@ class Logo extends Component
     }
 
     public function deletelogo($id){
-        $logo = footerlogo::find($id);
+        $this->deleteId = $id;
+    }
+
+    public function deleteRecord(){
+        $logo = footerlogo::find($this->deleteId);
         $logo->delete();
         session()->flash('message', 'لوگو با موفقیت حذف شد!');
     }
