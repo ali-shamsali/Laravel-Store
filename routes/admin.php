@@ -18,3 +18,5 @@ Route::get('/settings/footer/label' , \App\Livewire\Admin\Settings\Footer\Label:
 Route::get('/settings/footer/social' , \App\Livewire\Admin\Settings\Footer\Social::class)->name('admin.setting.footer.social');
 // // settings footer logo
 Route::get('/settings/footer/logo' , \App\Livewire\Admin\Settings\Footer\Logo::class)->name('admin.setting.footer.logo');
+// // update footer logo
+Route::get('/settings/footer/updatelogo/{footerlogo}' , \App\Livewire\Admin\Settings\Footer\Updatelogo::class)->name('admin.setting.footer.updatelogo');

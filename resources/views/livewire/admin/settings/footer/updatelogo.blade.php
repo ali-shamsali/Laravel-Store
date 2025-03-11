@@ -1,4 +1,4 @@
-@section('title', 'لوگو')
+@section('title', 'ویرایش لوگو فوتر')
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -20,11 +20,11 @@
                     </div>
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
-                            <h4 class="card-title">افزودن لوگو</h4>
+                            <h4 class="card-title">ویرایش لوگو</h4>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form role="form" wire:submit.prevent='SaveLogo'>
+                                    <form role="form" wire:submit.prevent='updateLogo'>
                                         @include('errors.error')
                                         @if (session()->has('message'))
                                             <div class="alert alert-success">
@@ -77,7 +77,7 @@
                     <div class="col-12 col-lg-5 box-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-2">لیست لوگو ها</h4>
+                                <h4 class="card-title mb-2">لوگوی مورد نظر</h4>
                                 <button type="button" class="btn btn-danger mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
                                     زباله</button>
@@ -93,7 +93,6 @@
                                             <th>عنوان لوگو</th>
                                             <th>جایگاه</th>
                                             <th>وضعیت</th>
-                                            <th>عملیات</th>
                                         </tr>
                                     </thead>
                                     <input type="text"
@@ -102,7 +101,7 @@
                                         wire:model.live.debounce.300ms='search'
                                     >
                                     <tbody>
-                                        @foreach ($logos as $logo)
+                                        @if($logo)
                                             <tr>
                                                 <td><img src="{{ asset('storage/' . $logo->image) }}" alt="" width="65px"> </td>
                                                 <td>{{ $logo->title }}</td>
@@ -114,19 +113,12 @@
                                                         <span class="badge badge-danger">غیرفعال</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('admin.setting.footer.updatelogo',$logo->id) }}"  class="action-icon"> <i class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                    <button wire:click='deletelogo({{ $logo->id }})'
-                                                        data-toggle="modal"
-                                                        data-target="#exampleModal"
-                                                        class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i>
-                                                    </button>
-                                                </td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
-                                {{ $logos->links() }}
+                                <a href="{{ route('admin.setting.footer.logo') }}" class="btn btn-primary mb-2 mr-2">بازگشت به لیست لوگوها</a>
+
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
                     </div><!-- end col-->
