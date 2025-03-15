@@ -78,12 +78,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست لوگو ها</h4>
-                                <button type="button" class="btn btn-danger mb-2 mr-2"
+                                <a href="{{ route('admin.setting.footer.trashlogo') }}" class="btn btn-danger mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله</button>
-                                <button type="button" class="btn btn-primary mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
-                                    اکسل</button>
+                                    زباله</a>
                                 <hr>
 
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">

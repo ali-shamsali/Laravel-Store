@@ -20,3 +20,5 @@ Route::get('/settings/footer/social' , \App\Livewire\Admin\Settings\Footer\Socia
 Route::get('/settings/footer/logo' , \App\Livewire\Admin\Settings\Footer\Logo::class)->name('admin.setting.footer.logo');
 // // update footer logo
 Route::get('/settings/footer/updatelogo/{footerlogo}' , \App\Livewire\Admin\Settings\Footer\Updatelogo::class)->name('admin.setting.footer.updatelogo');
+// trash footer logo
+Route::get('/settings/footer/trashlogo' , \App\Livewire\Admin\Settings\Footer\Trashlogo::class)->name('admin.setting.footer.trashlogo');
