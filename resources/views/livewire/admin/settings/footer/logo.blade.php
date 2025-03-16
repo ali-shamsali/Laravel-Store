@@ -80,7 +80,14 @@
                                 <h4 class="card-title mb-2">لیست لوگو ها</h4>
                                 <a href="{{ route('admin.setting.footer.trashlogo') }}" class="btn btn-danger mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله</a>
+                                    زباله
+                                    <span class="badge badge-light">
+                                        @php
+                                          $deletedCount = \App\Models\Admin\Settings\footerlogo::onlyTrashed()->count();
+                                          echo $deletedCount;
+                                        @endphp
+                                    </span>
+                                </a>
                                 <hr>
 
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
