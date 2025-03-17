@@ -9,30 +9,12 @@
 
         <div class="container">
             <div class="footer-inner-box">
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/delivery.svg') }}" alt="badge">
-                    <span class="item-feature">تحویل اکسپرس</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/contact-us.svg') }}" alt="badge">
-                    <span class="item-feature">پشتیبانی 24 ساعته</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/payment-terms.svg') }}" alt="badge">
-                    <span class="item-feature">پرداخت در منزل</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/return-policy.svg') }}" alt="badge">
-                    <span class="item-feature">7 روز ضمانت برگشت</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/origin-guarantee.svg') }}" alt="badge">
-                    <span class="item-feature">ضمانت اصل بودن کالا</span>
-                </a>
+                @foreach ($topLogoFooter as $logo)
+                    <a href="#" class="footer-badge">
+                        <img src="storage/{{ $logo->image }}" alt="badge">
+                        <span class="item-feature">{{ $logo->title }}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
         <div class="col-12">
@@ -74,7 +56,7 @@
 
                 <div class="col-lg-4 col-xs-12 pull-left">
                     <div class="footer-form">
-                        <span class="newslitter-form">{{  $footer->rssLabel  }}
+                        <span class="newslitter-form">{{ $footer->rssLabel }}
                         </span>
 
                         <form action="#">
@@ -103,9 +85,11 @@
                 <div class="footer-contact">
                     <ul>
                         <li>{{ $footer->supportLabel }}</li>
-                        <li style="float:right">{{ $footer->phoneLabel }} : <a href="#" class="phone-contact">{{ $footer->Text_phone }}
+                        <li style="float:right">{{ $footer->phoneLabel }} : <a href="#"
+                                class="phone-contact">{{ $footer->Text_phone }}
                             </a></li>
-                        <li class="email-title">{{ $footer->emailLabel }} : <a href="#">{{ $footer->Text_email }}</a></li>
+                        <li class="email-title">{{ $footer->emailLabel }} : <a
+                                href="#">{{ $footer->Text_email }}</a></li>
                     </ul>
                 </div>
 
@@ -124,32 +108,14 @@
                     <h1>{{ $footer->aboutheadLabel }}</h1>
                     <p>{{ $footer->aboutbodyLabel }}</p>
                     <div class="footer-inner-box">
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-1.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-2.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-3.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-4.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-5.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
+                        @foreach ($bottomLogoFooter as $logo)
+                            <a href="#" class="footer-badge">
+                                <img src="storage/{{ $logo->image }}"
+                                    style="width: 130px !important;" alt="badge">
+                            </a>
+                        @endforeach
                     </div>
                 </div>
-
                 <div class="copy-right-footer">
                     <p>
                         {{ $footer->copyright }}
