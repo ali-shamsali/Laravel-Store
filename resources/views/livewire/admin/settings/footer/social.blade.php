@@ -1,4 +1,4 @@
-@section('title',"شبکه های اجتماعی")
+@section('title', 'شبکه های اجتماعی')
 <div>
     <div class="container-fluid">
         <div class="inbox-area">
@@ -12,9 +12,15 @@
                                         <div class="file-manager clearfix">
                                             <!-- Title -->
                                             <ul class="folder-list">
-                                                <li><a href="{{ route('admin.setting.footer.label') }}">برچسب ها</a></li>
-                                                <li class="active"><a href="{{ route('admin.setting.footer.social') }}"> شبکه های اجتماعی  </a></li>
-                                                <li><a href="{{ route('admin.setting.footer.logo') }}">لوگو های فوتر</a></li>
+                                                <li><a href="{{ route('admin.setting.footer.label') }}">برچسب ها</a>
+                                                </li>
+                                                <li class="active"><a href="{{ route('admin.setting.footer.social') }}"> شبکه های
+                                                        اجتماعی </a></li>
+                                                <li><a href="{{ route('admin.setting.footer.logo') }}">لوگو های فوتر</a>
+                                                </li>
+                                                <li><a
+                                                        href="{{ route('admin.setting.footer.menu') }}">منوی های
+                                                        فوتر</a></li>
                                             </ul>
                                             <div class="clearfix"></div>
                                         </div>
@@ -83,7 +89,7 @@
                                             <label class="col-form-label">تلفن</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control"  wire:model='Text_phone'>
+                                            <input type="text" class="form-control" wire:model='Text_phone'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -91,7 +97,7 @@
                                             <label class="col-form-label">ایمیل</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control"  wire:model='Text_email'>
+                                            <input type="text" class="form-control" wire:model='Text_email'>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -99,10 +105,11 @@
                                             <label class="col-form-label">آدرس</label>
                                         </div>
                                         <div class="col-10">
-                                            <input type="text" class="form-control"  wire:model='Text_address' >
+                                            <input type="text" class="form-control" wire:model='Text_address'>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-outline-success mb-3" wire:click='update()'><i class="fa fa-save mr-3"></i>ذخیره</button>
+                                    <button type="submit" class="btn btn-outline-success mb-3" wire:click='update()'><i
+                                            class="fa fa-save mr-3"></i>ذخیره</button>
                                 </div>
                             </div>
                         </div>

@@ -50,6 +50,14 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::connection('mysql_settings')->create('footers-menu', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('type')->nullable();
+            $table->string('isActive')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -59,5 +67,6 @@ return new class extends Migration
     {
         Schema::connection('mysql_settings')->dropIfExists('footers');
         Schema::connection('mysql_settings')->dropIfExists('footers-logo');
+        Schema::connection('mysql_settings')->dropIfExists('footers-menu');
     }
 };

@@ -22,3 +22,5 @@ Route::get('/settings/footer/logo' , \App\Livewire\Admin\Settings\Footer\Logo::c
 Route::get('/settings/footer/updatelogo/{footerlogo}' , \App\Livewire\Admin\Settings\Footer\Updatelogo::class)->name('admin.setting.footer.updatelogo');
 // trash footer logo
 Route::get('/settings/footer/trashlogo' , \App\Livewire\Admin\Settings\Footer\Trashlogo::class)->name('admin.setting.footer.trashlogo');
+// footer menu
+Route::get('/settings/footer/menu' , \App\Livewire\Admin\Settings\Footer\Menu::class)->name('admin.setting.footer.menu');

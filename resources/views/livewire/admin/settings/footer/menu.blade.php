@@ -1,4 +1,4 @@
-@section('title', 'لوگو')
+@section('title', 'منو فوتر')
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -11,11 +11,9 @@
                                 <ul class="folder-list">
                                     <li><a href="{{ route('admin.setting.footer.label') }}">برچسب ها</a></li>
                                     <li><a href="{{ route('admin.setting.footer.social') }}"> شبکه های اجتماعی </a></li>
-                                    <li class="active"><a href="{{ route('admin.setting.footer.logo') }}">لوگو های
+                                    <li><a href="{{ route('admin.setting.footer.logo') }}">لوگو های فوتر</a></li>
+                                    <li class="active"><a href="{{ route('admin.setting.footer.menu') }}">منوی های
                                             فوتر</a></li>
-                                    <li><a href="{{ route('admin.setting.footer.menu') }}">منوی های
-                                            فوتر</a></li>
-
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
@@ -27,7 +25,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form role="form" wire:submit.prevent='SaveLogo'>
+                                    <form role="form" wire:submit.prevent='SaveMenu'>
                                         @include('errors.error')
                                         @if (session()->has('message'))
                                             <div class="alert alert-success">
@@ -35,35 +33,17 @@
                                             </div>
                                         @endif
                                         <div class="form-group">
-                                            <label for="exampleInputEmail111">عنوان لوگو:</label>
+                                            <label for="exampleInputEmail111">عنوان منو:</label>
                                             <input type="text" wire:model='title' class="form-control"
                                                 id="exampleInputEmail111">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail12">جایگاه لوگو:</label>
+                                            <label for="exampleInputEmail12">جایگاه منو:</label>
                                             <select class="form-control" wire:model='type' style="width: 100%;">
-                                                <option value="bottom">لوگوی پایین فوتر</option>
-                                                <option value="top">لوگوی بالا فوتر</option>
+                                                <option value="wigetLabel_1">ستون اول فوتر</option>
+                                                <option value="wigetLabel_2">ستون دوم فوتر</option>
+                                                <option value="wigetLabel_3">ستون سوم فوتر</option>
                                             </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="logoImage">انتخاب تصویر لوگو:</label>
-                                            <input type="file" wire:model='image' class="form-control"
-                                                id="logoImage">
-                                            @error('image')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-
-                                            <div class="progress my-3" wire:loading wire:target='image'>
-                                                <div class="progress-bar progress-bar-striped bg-success"
-                                                    role="progressbar" style="width: 100%" aria-valuenow="100"
-                                                    aria-valuemin="0" aria-valuemax="100">در حال بارگذاری ...</div>
-                                            </div>
-                                            @if ($image)
-                                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail mt-2"
-                                                    width="150">
-                                            @endif
                                         </div>
 
                                         <div class="checkbox checkbox-primary d-inline">
@@ -82,24 +62,13 @@
                     <div class="col-12 col-lg-5 box-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-2">لیست لوگو ها</h4>
-                                <a href="{{ route('admin.setting.footer.trashlogo') }}" class="btn btn-danger mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله
-                                    <span class="badge badge-light">
-                                        @php
-                                            $deletedCount = \App\Models\Admin\Settings\footerlogo::onlyTrashed()->count();
-                                            echo $deletedCount;
-                                        @endphp
-                                    </span>
-                                </a>
+                                <h4 class="card-title mb-2">لیست منو ها</h4>
                                 <hr>
 
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>تصویر</th>
-                                            <th>عنوان لوگو</th>
+                                            <th>عنوان منو</th>
                                             <th>جایگاه</th>
                                             <th>وضعیت</th>
                                             <th>عملیات</th>
@@ -108,25 +77,38 @@
                                     <input type="text" class="form-control my-2" placeholder="جستجو..."
                                         wire:model.live.debounce.300ms='search'>
                                     <tbody>
-                                        @foreach ($logos as $logo)
+                                        @foreach ($menus as $menu)
                                             <tr>
-                                                <td><img src="{{ asset('storage/' . $logo->image) }}" alt=""
-                                                        width="65px"> </td>
-                                                <td>{{ $logo->title }}</td>
-                                                <td>{{ $logo->type == 'top' ? 'لوگوی بالای فوتر' : 'لوگوی پایین فوتر' }}
+                                                <td>{{ $menu->title }}</td>
+                                                <td>
+                                                    @switch($menu->type)
+                                                        @case("wigetLabel_1")
+                                                        {{ "ستون اول "}}
+                                                        @break
+
+                                                        @case("wigetLabel_2")
+                                                        {{ "ستون دوم "}}
+                                                        @break
+
+                                                        @case("wigetLabel_3")
+                                                        {{ "ستون سوم "}}
+                                                        @break
+
+                                                        @default
+                                                    @endswitch
                                                 </td>
                                                 <td>
-                                                    @if ($logo->isActive == 1)
+                                                    @if ($menu->isActive == 1)
                                                         <span class="badge badge-success">فعال</span>
                                                     @else
                                                         <span class="badge badge-danger">غیرفعال</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.setting.footer.updatelogo', $logo->id) }}"
+                                                    <a href="#"
                                                         class="action-icon"> <i
                                                             class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                    <button wire:click='deletelogo({{ $logo->id }})'
+                                                    <button wire:click='deletelogo({{ $menu->id }})'
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         class="action-icon"> <i
                                                             class="zmdi zmdi-delete zmdi-custom"></i>
@@ -136,7 +118,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $logos->links() }}
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
                     </div><!-- end col-->
