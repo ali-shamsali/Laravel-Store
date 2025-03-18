@@ -43,7 +43,11 @@ class Menu extends Component
 
     public function render()
     {
-        $menus = footermenu::all();
+        if($this->search != ''){
+            $menus = footermenu::where('title', 'like', '%'.$this->search.'%')->paginate(2);
+        }else{
+            $menus = footermenu::all();
+        }
         return view('livewire.admin.settings.footer.menu' , compact('menus'));
     }
 }
