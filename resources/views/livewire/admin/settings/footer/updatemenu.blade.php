@@ -89,7 +89,7 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                <a href="{{ route('admin.setting.footer.logo') }}" class="btn btn-primary mb-2 mr-2">بازگشت به لیست لوگوها</a>
+                                <a href="{{ route('admin.setting.footer.menu') }}" class="btn btn-primary mb-2 mr-2">بازگشت به لیست منوها</a>
 
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
