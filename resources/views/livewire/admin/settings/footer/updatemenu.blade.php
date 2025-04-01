@@ -1,4 +1,4 @@
-@section('title', 'منو فوتر')
+@section('title', 'ویرایش منو فوتر')
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -11,8 +11,7 @@
                                 <ul class="folder-list">
                                     <li><a href="{{ route('admin.setting.footer.label') }}">برچسب ها</a></li>
                                     <li><a href="{{ route('admin.setting.footer.social') }}"> شبکه های اجتماعی </a></li>
-                                    <li><a href="{{ route('admin.setting.footer.logo') }}">لوگو های فوتر</a></li>
-                                    <li class="active"><a href="{{ route('admin.setting.footer.menu') }}">منوی های
+                                    <li class="active"><a href="{{ route('admin.setting.footer.logo') }}">لوگو های
                                             فوتر</a></li>
                                 </ul>
                                 <div class="clearfix"></div>
@@ -21,11 +20,11 @@
                     </div>
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
-                            <h4 class="card-title">افزودن منو</h4>
+                            <h4 class="card-title">ویرایش منو</h4>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form role="form" wire:submit.prevent='SaveMenu'>
+                                    <form role="form" wire:submit.prevent='updateMenu'>
                                         @include('errors.error')
                                         @if (session()->has('message'))
                                             <div class="alert alert-success">
@@ -62,41 +61,23 @@
                     <div class="col-12 col-lg-5 box-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-2">لیست منو ها</h4>
+                                <h4 class="card-title mb-2">منوی مورد نظر</h4>
                                 <hr>
 
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>عنوان منو</th>
+                                            <th>عنوان لوگو</th>
                                             <th>جایگاه</th>
                                             <th>وضعیت</th>
-                                            <th>عملیات</th>
                                         </tr>
                                     </thead>
-                                    <input type="text" class="form-control my-2" placeholder="جستجو..."
-                                        wire:model.live.debounce.300ms='search'>
+
                                     <tbody>
-                                        @foreach ($menus as $menu)
+                                        @if($menu)
                                             <tr>
                                                 <td>{{ $menu->title }}</td>
-                                                <td>
-                                                    @switch($menu->type)
-                                                        @case("wigetLabel_1")
-                                                        {{ "ستون اول "}}
-                                                        @break
-
-                                                        @case("wigetLabel_2")
-                                                        {{ "ستون دوم "}}
-                                                        @break
-
-                                                        @case("wigetLabel_3")
-                                                        {{ "ستون سوم "}}
-                                                        @break
-
-                                                        @default
-                                                    @endswitch
-                                                </td>
+                                                <td>{{ $menu->type }}</td>
                                                 <td>
                                                     @if ($menu->isActive == 1)
                                                         <span class="badge badge-success">فعال</span>
@@ -104,23 +85,12 @@
                                                         <span class="badge badge-danger">غیرفعال</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('admin.setting.footer.updatemenu', $menu->id) }}"
-                                                        class="action-icon">
-                                                        <i
-                                                            class="zmdi zmdi-edit zmdi-custom">
-                                                        </i>
-                                                    </a>
-                                                    <button wire:click='deletelogo({{ $menu->id }})'
-                                                        data-toggle="modal" data-target="#exampleModal"
-                                                        class="action-icon"> <i
-                                                            class="zmdi zmdi-delete zmdi-custom"></i>
-                                                    </button>
-                                                </td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
+                                <a href="{{ route('admin.setting.footer.logo') }}" class="btn btn-primary mb-2 mr-2">بازگشت به لیست لوگوها</a>
+
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
                     </div><!-- end col-->

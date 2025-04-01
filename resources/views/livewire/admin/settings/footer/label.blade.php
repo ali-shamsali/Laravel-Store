@@ -15,13 +15,11 @@
                                                 <li class="active"><a
                                                         href="{{ route('admin.setting.footer.label') }}">برچسب ها</a>
                                                 </li>
-                                                <li><a href="{{ route('admin.setting.footer.label') }}">برچسب ها</a>
-                                                </li>
                                                 <li><a href="{{ route('admin.setting.footer.social') }}"> شبکه های
                                                         اجتماعی </a></li>
                                                 <li><a href="{{ route('admin.setting.footer.logo') }}">لوگو های فوتر</a>
                                                 </li>
-                                                <li class="active"><a
+                                                <li><a
                                                         href="{{ route('admin.setting.footer.menu') }}">منوی های
                                                         فوتر</a></li>
                                             </ul>
