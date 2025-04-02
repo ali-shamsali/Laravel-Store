@@ -24,31 +24,33 @@
                         <div class="links-col">
                             <a href="#" class="head-line">{{ $footer->wigetLabel_1 }}</a>
                             <ul class="links-ul">
-                                <li><a href="#">نحوه ثبت سفارش</a></li>
-                                <li><a href="#">رویه ارسال سفارش</a></li>
-                                <li><a href="#">شیوه‌های پرداخت</a></li>
+                                @foreach ($menus as $menu)
+                                    @if ($menu->type == 'wigetLabel_1')
+                                        <li><a href="#">{{ $menu->title }}</a></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
 
                         <div class="links-col">
                             <a href="#" class="head-line">{{ $footer->wigetLabel_2 }}</a>
                             <ul class="links-ul">
-                                <li><a href="#">پرسش یه پاسخ های متداول</a></li>
-                                <li><a href="#">رویه های بازگرداندن کالا</a></li>
-                                <li><a href="#">شرایط استفاده</a></li>
-                                <li><a href="#">حریم خصوصی</a></li>
-                                <li><a href="#">گزارش باگ</a></li>
+                                @foreach ($menus as $menu)
+                                    @if ($menu->type == 'wigetLabel_2')
+                                        <li><a href="#">{{ $menu->title }}</a></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
 
                         <div class="links-col">
                             <a href="#" class="head-line">{{ $footer->wigetLabel_3 }}</a>
                             <ul class="links-ul">
-                                <li><a href="#">اتاق خبر دیجی استور</a></li>
-                                <li><a href="#">فروش در دیجی استور</a></li>
-                                <li><a href="#">فرصت های شغلی</a></li>
-                                <li><a href="#">تماس با دیجی استور</a></li>
-                                <li><a href="#">درباره ما دیجی استور</a></li>
+                                @foreach ($menus as $menu)
+                                    @if ($menu->type == 'wigetLabel_3')
+                                        <li><a href="#">{{ $menu->title }}</a></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -110,8 +112,7 @@
                     <div class="footer-inner-box">
                         @foreach ($bottomLogoFooter as $logo)
                             <a href="#" class="footer-badge">
-                                <img src="storage/{{ $logo->image }}"
-                                    style="width: 130px !important;" alt="badge">
+                                <img src="storage/{{ $logo->image }}" style="width: 130px !important;" alt="badge">
                             </a>
                         @endforeach
                     </div>
