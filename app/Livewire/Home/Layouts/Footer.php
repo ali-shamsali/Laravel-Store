@@ -21,6 +21,8 @@ class Footer extends Component
         $menus = DB::connection('mysql_settings')->table('footers-menu')
         ->where('isActive',1)
         ->get();
-        return view('livewire.home.layouts.footer',compact('footer' , 'topLogoFooter','bottomLogoFooter' , 'menus'))->layout('layouts.home');
+        $namads = DB::connection('mysql_settings')->table('footers-namad')
+        ->first();
+        return view('livewire.home.layouts.footer',compact('footer' , 'topLogoFooter','bottomLogoFooter' , 'menus','namads'))->layout('layouts.home');
     }
 }

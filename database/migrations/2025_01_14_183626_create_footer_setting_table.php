@@ -58,6 +58,16 @@ return new class extends Migration
             $table->string('isActive')->nullable();
             $table->timestamps();
         });
+
+        Schema::connection('mysql_settings')->create('footers-namad', function (Blueprint $table) {
+            $table->id();
+            $table->string('image_app1')->nullable();
+            $table->string('image_app2')->nullable();
+            $table->string('link_app1')->nullable();
+            $table->string('link_app2')->nullable();
+            $table->string('enamad')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -68,5 +78,7 @@ return new class extends Migration
         Schema::connection('mysql_settings')->dropIfExists('footers');
         Schema::connection('mysql_settings')->dropIfExists('footers-logo');
         Schema::connection('mysql_settings')->dropIfExists('footers-menu');
+        Schema::connection('mysql_settings')->dropIfExists('footers-menu');
+        Schema::connection('mysql_settings')->dropIfExists('footers-namad');
     }
 };

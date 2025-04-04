@@ -96,9 +96,9 @@
                 </div>
 
                 <div class="address-images">
-                    <a href="#">
-                        <img src="{{ asset('home/images/footer-img/1090a120.png') }}" alt="address">
-                        <img src="{{ asset('home/images/footer-img/71abe5c9.png') }}" alt="address">
+                    <a href="{{ $namads->link_app1 }}">
+                        <img src="{{ $namads->image_app1 }}" alt="address">
+                        <img src="{{ $namads->image_app2 }}" alt="address">
                     </a>
                 </div>
             </div>
