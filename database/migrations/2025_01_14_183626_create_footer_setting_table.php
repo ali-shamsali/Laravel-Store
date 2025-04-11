@@ -78,7 +78,6 @@ return new class extends Migration
         Schema::connection('mysql_settings')->dropIfExists('footers');
         Schema::connection('mysql_settings')->dropIfExists('footers-logo');
         Schema::connection('mysql_settings')->dropIfExists('footers-menu');
-        Schema::connection('mysql_settings')->dropIfExists('footers-menu');
         Schema::connection('mysql_settings')->dropIfExists('footers-namad');
     }
 };
