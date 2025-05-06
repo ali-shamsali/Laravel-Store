@@ -12,7 +12,8 @@
 
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="{{ Request::routeIs('admin') ? "active" : "" }}"><a href="index.html"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+                    <li class="{{ Request::routeIs('admin') ? "active" : "" }}"><a href="{{ route('admin') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+                    <li class="{{ Request::routeIs('log') ? "active" : "" }}"><a href="{{ route('admin.log') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
 {{--                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span>مقالات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">

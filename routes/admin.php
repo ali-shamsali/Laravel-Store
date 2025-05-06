@@ -28,3 +28,5 @@ Route::get('/settings/footer/menu' , \App\Livewire\Admin\Settings\Footer\Menu::c
 Route::get('/settings/footer/updatemenu/{footermenu}' , \App\Livewire\Admin\Settings\Footer\Updatemenu::class)->name('admin.setting.footer.updatemenu');
 // enamad
 Route::get('/settings/footer/namad' , \App\Livewire\Admin\Settings\Footer\Namad::class)->name('admin.setting.footer.namad');
+// logs
+Route::get('/settings/logs' , \App\Livewire\Admin\Settings\Log::class)->name('admin.log');
