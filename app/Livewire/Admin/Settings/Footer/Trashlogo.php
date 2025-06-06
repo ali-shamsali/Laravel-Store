@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Livewire\Admin\Settings\Footer;
+
 use Livewire\Component;
 use App\Models\admin\settings\footerlogo;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Admin\Log;
 
 class Trashlogo extends Component
 {
@@ -15,7 +17,8 @@ class Trashlogo extends Component
     public $search = '';
     public $deleteId;
 
-    public function IDlogo($id){
+    public function IDlogo($id)
+    {
         $this->deleteId = $id;
     }
 
@@ -25,6 +28,8 @@ class Trashlogo extends Component
         if ($logo) {
             $logo->restore();
             session()->flash('message', 'لوگو با موفقیت بازیابی شد!');
+            $desc = 'لوگو فوتر توسط کاربر بازیابی شد';
+            Log::MakeLog('restore', $desc);
         }
     }
     public function forceDeleteLogo()
@@ -38,6 +43,8 @@ class Trashlogo extends Component
 
             $logo->forceDelete();
             session()->flash('message', 'لوگو و فایل آن برای همیشه حذف شدند!');
+            $desc = 'لوگو فوتر توسط کاربر برای همیشه حذف شد';
+            Log::MakeLog('delete', $desc);
         }
     }
 

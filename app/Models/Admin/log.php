@@ -5,15 +5,27 @@ namespace App\Models\admin;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class log extends Model
 {
     use HasFactory;
     protected $connection = 'mysql_settings';
     protected $table = 'logs';
-    protected $fillable = ['user_id' , 'ip' , 'actionType' , 'desc'];
+    protected $fillable = ['user_id', 'ip', 'actionType', 'desc'];
 
-    public function user(){
-       return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public static function MakeLog($actionType, $desc)
+    {
+        return self::create([
+            'user_id' => Auth::id(),
+            'ip' => request()->ip(),
+            'actionType' => $actionType,
+            'desc' => $desc,
+        ]);
     }
 }

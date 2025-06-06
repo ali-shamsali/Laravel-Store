@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Settings\Footer;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\Admin\Log;
 
 class Social extends Component
 {
@@ -43,5 +44,8 @@ class Social extends Component
             "Text_address"  => $this->Text_address ,
             "Text_email"    => $this->Text_email,
         ]);
+
+        $desc = 'شبکه های اجتماعی فوتر توسط کاربر آپدیت شد';
+        Log::MakeLog('update', $desc);
     }
 }

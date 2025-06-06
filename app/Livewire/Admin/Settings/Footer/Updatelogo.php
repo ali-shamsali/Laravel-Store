@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Settings\Footer;
 use Livewire\Component;
 use App\Models\Admin\Settings\FooterLogo;
 use Livewire\WithFileUploads;
+use App\Models\Admin\Log;
 
 class Updatelogo extends Component
 {
@@ -50,6 +51,9 @@ class Updatelogo extends Component
         ]);
 
         session()->flash('message', 'لوگو با موفقیت بروزرسانی شد!');
+        $desc = 'لوگو با موفقیت توسط کاربر بروزرسانی شد';
+        Log::MakeLog('update', $desc);
+
     }
 
     public function render()

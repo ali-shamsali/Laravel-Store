@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin\Log;
 
 class Namad extends Component
 {
@@ -49,5 +50,7 @@ class Namad extends Component
         }
 
         session()->flash('message', 'تنظیمات با موفقیت ذخیره شد.');
+        $desc = 'لوگو نماد توسط کاربر آپدیت شد';
+        Log::MakeLog('update', $desc);
     }
 }

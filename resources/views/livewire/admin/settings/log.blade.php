@@ -20,29 +20,40 @@
                             </thead>
 
                             <tbody>
-                                @foreach ( $logs as $log)
+                                @foreach ($logs as $log)
                                     <tr>
                                         <td>{{ $log->user->name }}</td>
                                         <td>{{ $log->ip }}</td>
                                         <td>
-                                            @if($log->actionType == "insert")
-                                            {{ "اضافه کردن" }}
-                                            @endif
+                                            @switch($log->actionType)
+                                                @case('insert')
+                                                    <div class="badge badge-success">ایجاد</div>
+                                                @break
+
+                                                @case('update')
+                                                    <div class="badge badge-primary">ویرایش</div>
+                                                @break
+
+                                                @case('delete')
+                                                    <div class="badge badge-danger">حذف</div>
+                                                @break
+
+                                                @case('restore')
+                                                    <div class="badge badge-info">بازگردانی</div>
+                                                @break
+
+                                                @default
+                                                    <div class="badge badge-warning">عملیات نامشخص</div>
+                                            @endswitch
                                         </td>
                                         <td>{{ $log->desc }}</td>
                                         <td>{{ $log->created_at }}</td>
-                                        <td>
-                                            <div class="badge badge-primary">ویرایش</div>
-                                            <div class="badge badge-info">دیگر</div>
-                                            <div class="badge badge-danger">حذف</div>
-                                            <div class="badge badge-success">ایجاد</div>
-                                            <div class="badge badge-warning">دیگر</div>
-                                        </td>
                                     </tr>
                                 @endforeach
+
                             </tbody>
                         </table>
-
+                        {{ $logs->links() }}
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->

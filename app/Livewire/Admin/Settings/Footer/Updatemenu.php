@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use App\Models\Admin\Settings\footermenu;
+use App\Models\Admin\Log;
 
 class Updatemenu extends Component
 {
@@ -41,6 +42,8 @@ class Updatemenu extends Component
         ]);
 
         session()->flash('message', 'منو با موفقیت بروزرسانی شد!');
+        $desc = 'منو با موفقیت توسط کاربر بروزرسانی شد';
+        Log::MakeLog('update', $desc);
     }
 
     public function render()

@@ -47,37 +47,44 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>آیپی کاربر</th>
-                                                <th>نام و سمت</th>
-                                                <th>موبایل</th>
+                                                <th>نام کاربر</th>
+                                                <th>آی پی</th>
+                                                <th>نوع عملیات</th>
                                                 <th>شرح عملیات</th>
-                                                <th>تاریخ و ساعت</th>
+                                                <th>تاریخ انجام</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="media align-items-center">
-                                                        <div>
-                                                            <span>تلفن تلفن</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>2864</td>
-                                                <td>81</td>
-                                                <td>1،912.00 تومان</td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="progress progress-sm">
-                                                            <div class="progress-bar bg-success" style="width: 82%">
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            824
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @foreach ($logs as $log)
+                                                <tr>
+                                                    <td>{{ $log->user->name }}</td>
+                                                    <td>{{ $log->ip }}</td>
+                                                    <td>
+                                                        @switch($log->actionType)
+                                                            @case('insert')
+                                                                <div class="badge badge-success">ایجاد</div>
+                                                            @break
+
+                                                            @case('update')
+                                                                <div class="badge badge-primary">ویرایش</div>
+                                                            @break
+
+                                                            @case('delete')
+                                                                <div class="badge badge-danger">حذف</div>
+                                                            @break
+
+                                                            @case('restore')
+                                                                <div class="badge badge-info">بازگردانی</div>
+                                                            @break
+
+                                                            @default
+                                                                <div class="badge badge-warning">عملیات نامشخص</div>
+                                                        @endswitch
+                                                    </td>
+                                                    <td>{{ $log->desc }}</td>
+                                                    <td>{{ $log->created_at }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

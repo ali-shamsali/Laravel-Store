@@ -3,11 +3,13 @@
 namespace App\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use App\Models\admin\settings\footermenu;
+use App\Models\Admin\Log;
 
 class Menu extends Component
 {
-    public $title, $type, $isActive , $image;
+    public $title, $type, $isActive, $image;
     public footermenu $footermenu;
     public $search = '';
     public function mount()
@@ -36,6 +38,9 @@ class Menu extends Component
         $this->footermenu = new footermenu();
 
         session()->flash('message', 'منو با موفقیت ذخیره شد!');
+        $desc = 'منو فوتر توسط کاربر ذخیره شد';
+        Log::MakeLog('insert', $desc);
+
 
         $this->reset(['title', 'type', 'isActive']);
     }
@@ -43,11 +48,11 @@ class Menu extends Component
 
     public function render()
     {
-        if($this->search != ''){
-            $menus = footermenu::where('title', 'like', '%'.$this->search.'%')->paginate(2);
-        }else{
+        if ($this->search != '') {
+            $menus = footermenu::where('title', 'like', '%' . $this->search . '%')->paginate(2);
+        } else {
             $menus = footermenu::all();
         }
-        return view('livewire.admin.settings.footer.menu' , compact('menus'));
+        return view('livewire.admin.settings.footer.menu', compact('menus'));
     }
 }

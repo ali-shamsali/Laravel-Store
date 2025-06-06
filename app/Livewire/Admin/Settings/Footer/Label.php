@@ -1,32 +1,61 @@
 <?php
+
 namespace App\Livewire\Admin\Settings\Footer;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Admin\Log;
 
 class Label extends Component
 {
 
-    public $upLabel,$wigetLabel_1,$wigetLabel_2,$wigetLabel_3,$rssLabel,$socialLabel,$supportLabel,$phoneLabel,$addressLabel,$emailLabel,$aboutheadLabel,$aboutbodyLabel,$copyright ;
+    public $upLabel, $wigetLabel_1, $wigetLabel_2, $wigetLabel_3, $rssLabel, $socialLabel, $supportLabel, $phoneLabel, $addressLabel, $emailLabel, $aboutheadLabel, $aboutbodyLabel, $copyright;
 
     public function render()
     {
         $footer = DB::connection('mysql_settings')->table('footers')->first();
-        $this->upLabel        = $footer->upLabel ;
-        $this->wigetLabel_1   = $footer->wigetLabel_1 ;
-        $this->wigetLabel_2   = $footer->wigetLabel_3 ;
-        $this->wigetLabel_3   = $footer->wigetLabel_3 ;
-        $this->rssLabel       = $footer->rssLabel ;
-        $this->socialLabel    = $footer->socialLabel ;
-        $this->supportLabel   = $footer->supportLabel ;
-        $this->phoneLabel     = $footer->phoneLabel ;
-        $this->addressLabel   = $footer->addressLabel ;
-        $this->emailLabel     = $footer->emailLabel ;
-        $this->aboutheadLabel = $footer->aboutheadLabel ;
-        $this->aboutbodyLabel = $footer->aboutbodyLabel ;
-        $this->copyright      = $footer->copyright ;
+        $this->upLabel        = $footer->upLabel;
+        $this->wigetLabel_1   = $footer->wigetLabel_1;
+        $this->wigetLabel_2   = $footer->wigetLabel_3;
+        $this->wigetLabel_3   = $footer->wigetLabel_3;
+        $this->rssLabel       = $footer->rssLabel;
+        $this->socialLabel    = $footer->socialLabel;
+        $this->supportLabel   = $footer->supportLabel;
+        $this->phoneLabel     = $footer->phoneLabel;
+        $this->addressLabel   = $footer->addressLabel;
+        $this->emailLabel     = $footer->emailLabel;
+        $this->aboutheadLabel = $footer->aboutheadLabel;
+        $this->aboutbodyLabel = $footer->aboutbodyLabel;
+        $this->copyright      = $footer->copyright;
         return view('livewire.admin.settings.footer.label');
     }
-    public function update(){
+    public function update()
+    {
+        $oldFooter = DB::connection('mysql_settings')->table('footers')->first();
+
+        $changes = [];
+        $fields = [
+            'upLabel',
+            'wigetLabel_1',
+            'wigetLabel_2',
+            'wigetLabel_3',
+            'rssLabel',
+            'socialLabel',
+            'supportLabel',
+            'phoneLabel',
+            'addressLabel',
+            'emailLabel',
+            'aboutheadLabel',
+            'aboutbodyLabel',
+            'copyright'
+        ];
+
+        foreach ($fields as $field) {
+            if ($this->$field !== $oldFooter->$field) {
+                $changes[] = $field;
+            }
+        }
         $footer = DB::connection('mysql_settings')->table('footers')->limit(1);
         $this->validate([
             "upLabel"        => 'required',
@@ -60,7 +89,12 @@ class Label extends Component
             "copyright"      => $this->copyright
         ]);
 
-/*         $this->dispatch('show-message', [
+        if (!empty($changes)) {
+            $desc = 'برچسب‌های ' . implode('، ', $changes) . ' توسط کاربر آپدیت شد';
+            Log::MakeLog('update', $desc);
+        }
+
+        /*         $this->dispatch('show-message', [
             'message' => 'تنظیمات با موفقیت ذخیره شد',
             'status' => 'success'
         ]); */

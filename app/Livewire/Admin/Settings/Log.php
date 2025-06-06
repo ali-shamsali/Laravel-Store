@@ -19,11 +19,11 @@ class Log extends Component
 
     public function render()
     {
-        if($this->search != ''){
-            $logs = LogModel::where('title', 'like', '%'.$this->search.'%')->paginate(2);
-        }else{
-            $logs = LogModel::all();
+        if ($this->search != '') {
+            $logs = LogModel::where('title', 'like', '%' . $this->search . '%')->paginate(2);
+        } else {
+            $logs = LogModel::orderBy('created_at', 'desc')->paginate(10);
         }
-        return view('livewire.admin.settings.log' , compact('logs'));
+        return view('livewire.admin.settings.log', compact('logs'));
     }
 }
