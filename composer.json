@@ -11,10 +11,10 @@
     "require": {
         "php": "^8.2",
         "hekmatinasser/verta": "^8.4",
+        "laravel/fortify": "^1.26",
         "laravel/framework": "^11.36",
-        "laravel/jetstream": "^5.3",
-        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.6",
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
