@@ -4,18 +4,21 @@
         <div class="col-lg-4 col-md-6 col-xs-12 mx-auto">
             <div class="account-box">
                 <a href="index.html" class="logo-account"><img src="{{ asset('home/images/logo-login.png') }}" alt="logo"></a>
-                <span class="account-head-line">ثبت نام</span>
+                <span class="account-head-line" style="text-align: center">ثبت نام</span>
                 <div class="content-account">
-                    <div class="massege-light">ثبت نام تنها با شماره تلفن همراه امکان پذیر است.</div>
-                    <form id="register">
-                        <label for="phone">شماره موبایل خود را وارد کنید</label>
-                        <input type="text" id="phone" class="input-email-account" placeholder="">
+                    @include('errors.error')
+                    <hr>
+                    <form id="register" wire:submit.prevent="registerform">
+                        <label for="name">نام خود را وارد کنید</label>
+                        <input type="text" wire:model='name' class="input-email-account" style="text-align: right">
+                        <label for="mobile">شماره موبایل خود را وارد کنید</label>
+                        <input type="text" wire:model='mobile' id="mobile" class="input-email-account" placeholder="">
                         <label for="password">رمز عبور</label>
-                        <input type="password" id="password" class="input-password" placeholder="">
-                        <label for="password">تکرار رمز عبور</label>
-                        <input type="password" id="password" class="input-password" placeholder="">
+                        <input type="password" wire:model='password' id="password" class="input-password" placeholder="">
+                        <label for="password_confirmation">تکرار رمز عبور</label>
+                        <input type="password" wire:model='password_confirmation' id="password_confirmation" class="input-password" placeholder="">
                         <div class="parent-btn">
-                            <button class="dk-btn dk-btn-info">
+                            <button class="dk-btn dk-btn-info" type="submit">
                                 ثبت نام به دیجی استور
                                 <i class="mdi mdi-account-plus-outline sign-in"></i>
                             </button>
