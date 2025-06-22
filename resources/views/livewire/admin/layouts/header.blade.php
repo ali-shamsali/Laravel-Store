@@ -66,14 +66,16 @@
 
                 <li class="nav-item dropdown">
                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><img src="{{ asset('admin/img/member-img/3.png') }}" alt=""></button>
+                        aria-expanded="false"><img src="{{ asset('admin/img/member-img/3.png') }}"
+                            alt=""></button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- User Profile Area -->
                         <div class="user-profile-area">
                             <div class="user-profile-heading">
                                 <!-- Thumb -->
                                 <div class="profile-img">
-                                    <img class="chat-img mr-2" src="{{ asset('admin/img/member-img/3.png') }}" alt="">
+                                    <img class="chat-img mr-2" src="{{ asset('admin/img/member-img/3.png') }}"
+                                        alt="">
                                 </div>
                                 <!-- Profile Text -->
                                 <div class="profile-text">
@@ -85,8 +87,13 @@
                                     aria-hidden="true"></i> پروفایل من</a>
                             <a href="#" class="dropdown-item"><i class="fa fa-key profile-icon bg-info"
                                     aria-hidden="true"></i> تغییر رمز عبور</a>
-                            <a href="#" class="dropdown-item"><i class="fa fa-sign-out profile-icon bg-danger"
-                                    aria-hidden="true"></i> خروج از سیستم</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-right">
+                                    <i class="fa fa-sign-out profile-icon bg-danger" aria-hidden="true"></i>
+                                    خروج از سیستم
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </li>

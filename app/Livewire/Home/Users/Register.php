@@ -29,9 +29,9 @@ class Register extends Component
         $this->user->password   = $this->password;
         User::create([
             'name' => $this->user->name ,
-            'email' => 'test@gmail.com' ,
+            'email' => 'user_' . time() . '@example.com',
             'mobile' => $this->user->mobile ,
-            'password' => Hash::make($this->user->password),
+            'password' => Hash::make($this->password),
         ]);
     }
 
