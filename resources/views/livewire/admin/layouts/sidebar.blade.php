@@ -1,8 +1,4 @@
 <div class="ecaps-sidemenu-area">
-    <!-- Desktop Logo -->
-    <div class="ecaps-logo">
-        <a href="{{ route('home.home') }}" target="_blank"><img class="desktop-logo" src="{{ asset('admin/img/core-img/logo.png') }}" alt="لوگوی دسک تاپ"> <img class="small-logo" src="img/core-img/small-logo.png" alt="آرم موبایل"></a>
-    </div>
 
     <!-- Side Nav -->
     <div class="ecaps-sidenav" id="ecapsSideNav">

@@ -21,5 +21,6 @@
     <script src="{{ asset('admin/js/default-assets/worldlow.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/radar.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/dashboard-2.js') }}"></script>
+    @yield('scripts')
 {{--     <script src="{{ mix('/js/app.js') }}"></script>
  --}}    @livewireScripts

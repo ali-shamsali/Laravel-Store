@@ -29,13 +29,17 @@ class Login extends Component
         $user = User::where('mobile', $this->mobile)->first();
 
         if (isset($user)) {
+            if (is_null($user->mobile_verified_at)) {
+                return to_route('verify.phone',  ['id' => $user->id]);
+            }
+
+
             if (Hash::check($this->password, $user->password)) {
                 Auth::loginUsingId($user->id);
                 to_route('admin');
             } else {
                 dd('password wrong!!');
             }
-
         } else {
             dd('user not found');
         }
