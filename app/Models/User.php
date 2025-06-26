@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\admin\log;
+use App\Models\home\Token;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function logs(){
         return $this->belongsToMany(log::class);
+    }
+
+    public function Tokens(){
+        return $this->belongsToMany(Token::class);
     }
 }

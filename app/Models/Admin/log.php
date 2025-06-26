@@ -19,10 +19,10 @@ class log extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function MakeLog($actionType, $desc)
+    public static function MakeLog($actionType, $desc, $userId = null)
     {
         return self::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId ?? Auth::id(),
             'ip' => request()->ip(),
             'actionType' => $actionType,
             'desc' => $desc,

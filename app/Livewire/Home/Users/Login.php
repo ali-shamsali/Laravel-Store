@@ -2,8 +2,11 @@
 
 namespace App\Livewire\Home\Users;
 
+use App\Models\admin\log;
+use App\Models\home\Token;
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +33,16 @@ class Login extends Component
 
         if (isset($user)) {
             if (is_null($user->mobile_verified_at)) {
-                return to_route('verify.phone',  ['id' => $user->id]);
+                $code = random_int(1000, 9999);
+                Token::create([
+                    'user_id' => $user->id,
+                    'type' => 'register',
+                    'code' => $code,
+                    'exp_at' => Carbon::now()->addMinutes(3)
+                ]);
+                $desc = 'کد ارسال: ' . $code . ' | پیامک با موفقیت برای شماره ' . $this->mobile . ' ارسال شد.';
+                Log::MakeLog('create', $desc, $user->id);
+                return to_route('verify.phone',  ['id' => $user->id , $code]);
             }
 
 
