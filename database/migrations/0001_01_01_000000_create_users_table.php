@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('type',['register']);
-            $table->string('code',4)->unique();
+            $table->string('code',5)->unique();
             $table->string('exp_at');
             $table->string('profile_photo')->nullable();
             $table->timestamps();

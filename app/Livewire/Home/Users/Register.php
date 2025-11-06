@@ -5,6 +5,10 @@ namespace App\Livewire\Home\Users;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\home\Token;
+use App\Services\SmsIrService;
+use Illuminate\Support\Carbon;
+use App\Models\admin\Log;
 
 class Register extends Component
 {
@@ -27,12 +31,26 @@ class Register extends Component
         $this->user->name       = $this->name;
         $this->user->mobile     = $this->mobile;
         $this->user->password   = $this->password;
-        User::create([
-            'name' => $this->user->name ,
+        $user = User::create([
+            'name' => $this->user->name,
             'email' => 'user_' . time() . '@example.com',
-            'mobile' => $this->user->mobile ,
+            'mobile' => $this->user->mobile,
             'password' => Hash::make($this->password),
         ]);
+
+        $code = random_int(10000, 99999);
+        Token::create([
+            'user_id' => $user->id,
+            'type' => 'register',
+            'code' => $code,
+            'exp_at' => Carbon::now()->addMinutes(3),
+        ]);
+
+        (new SmsIrService)->sendVerifyCode($this->mobile, $code);
+
+        Log::MakeLog('create', "ارسال کد $code برای ثبت‌نام {$this->mobile}", $user->id);
+
+        return to_route('verify.phone', ['id' => $user->id]);
     }
 
 

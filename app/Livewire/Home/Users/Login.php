@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Services\SmsIrService;
 
 class Login extends Component
 {
@@ -33,22 +34,25 @@ class Login extends Component
 
         if (isset($user)) {
             if (is_null($user->mobile_verified_at)) {
-                $code = random_int(1000, 9999);
+                $code = random_int(10000, 99999);
                 Token::create([
                     'user_id' => $user->id,
                     'type' => 'register',
                     'code' => $code,
                     'exp_at' => Carbon::now()->addMinutes(3)
                 ]);
-                $desc = 'کد ارسال: ' . $code . ' | پیامک با موفقیت برای شماره ' . $this->mobile . ' ارسال شد.';
+                (new SmsIrService)->sendVerifyCode($this->mobile, $code);
+
+                $desc = "کد ورود ارسال شد ($code) به شماره {$this->mobile}";
                 Log::MakeLog('create', $desc, $user->id);
-                return to_route('verify.phone',  ['id' => $user->id , $code]);
+
+                return to_route('verify.phone', ['id' => $user->id]);
             }
 
 
             if (Hash::check($this->password, $user->password)) {
                 Auth::loginUsingId($user->id);
-                to_route('admin');
+                return to_route('admin');
             } else {
                 dd('password wrong!!');
             }
