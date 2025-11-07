@@ -8,7 +8,7 @@
                     <form wire:submit.prevent="Loginform" id="login">
                         <label for="email-phone">شماره موبایل خود را وارد کنید</label>
                         <input type="text" id="email-phone" wire:model='mobile' class="input-email-account" placeholder="">
-                        <a href="password-forget.html" class="account-link-password">رمز خود را فراموش کرده ام</a>
+                        <a href="{{ route('forgot-password') }}" class="account-link-password">رمز خود را فراموش کرده ام</a>
                         <label for="password">رمز عبور</label>
                         <input type="password" id="password" wire:model='password' class="input-password" placeholder="">
                         <div class="parent-btn">

@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LogoutController;
 
 Route::get('/',  \App\Livewire\Home\Home\Index::class)->name('home.home');
-
+/** auth */
 Route::get('/register',  \App\Livewire\Home\Users\Register::class)->name('register');
 Route::get('/login',  \App\Livewire\Home\Users\Login::class)->name('login');
 Route::get('/verify-phone/{id}',  \App\Livewire\Home\Users\VerifyMobile::class)->name('verify.phone');
+Route::get('/forgot-password',  \App\Livewire\Home\Users\Forgotpassword::class)->name('forgot-password');
+Route::get('/password-reset/{id}',  \App\Livewire\Home\Users\Resetpassword::class)->name('password.reset');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 /* Auth::routes();
  */

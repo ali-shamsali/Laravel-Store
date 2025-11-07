@@ -29,7 +29,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('type',['register']);
+            $table->enum('type',['register','password_reset']);
             $table->string('code',5)->unique();
             $table->string('exp_at');
             $table->string('profile_photo')->nullable();
