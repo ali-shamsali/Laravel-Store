@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\admin\log;
+use App\Models\admin\permissions\permission;
+use App\Models\admin\permissions\role;
 use App\Models\home\Token;
 
 class User extends Authenticatable
@@ -63,5 +65,13 @@ class User extends Authenticatable
 
     public function Tokens(){
         return $this->belongsToMany(Token::class);
+    }
+
+    public function permissions(){
+        return $this->belongsToMany(permission::class);
+    }
+
+    public function roles(){
+        return $this->belongsToMany(role::class);
     }
 }

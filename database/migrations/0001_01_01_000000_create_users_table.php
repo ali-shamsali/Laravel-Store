@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password');
+            $table->enum('typeUsers',['user','vendor','admin'])->default('user');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
