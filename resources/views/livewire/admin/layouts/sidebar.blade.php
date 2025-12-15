@@ -8,9 +8,11 @@
 
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="{{ Request::routeIs('admin') ? "active" : "" }}"><a href="{{ route('admin') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
-                    <li class="{{ Request::routeIs('log') ? "active" : "" }}"><a href="{{ route('admin.log') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
-{{--                     <li class="treeview">
+                    <li class="{{ Request::routeIs('admin') ? 'active' : '' }}"><a href="{{ route('admin') }}"><i
+                                class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+                    <li class="{{ Request::routeIs('log') ? 'active' : '' }}"><a href="{{ route('admin.log') }}"><i
+                                class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
+                    {{--                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span>مقالات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="article-categories.html">دسته بندی</a></li>
@@ -135,16 +137,32 @@
                     </li>
  --}}
                     <li class="treeview {{ Request::routeIs('admin.setting.footer.label') ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i
+                                class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
-                            <li><a {{  Request::routeIs('admin.setting.footer.label') ? "style=color:#54c6d0;" : '' }} href="{{ route('admin.setting.footer.label') }}">تنظیمات فوتر سایت</a></li>
+                            <li><a {{ Request::routeIs('admin.setting.footer.label') ? 'style=color:#54c6d0;' : '' }}
+                                    href="{{ route('admin.setting.footer.label') }}">تنظیمات فوتر سایت</a></li>
                             <!-- استان و شهر و ... -  -->
                             <li><a href="#">تنظیمات فروشگاه سایت</a></li>
                         </ul>
                     </li>
-{{--                     /<li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li>
- --}}                </ul>
+                    <li class="treeview {{ Request::routeIs('admin.setting.footer.label') ? 'active' : '' }}">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>سطوح دسترسی</span> <i
+                                class="fa fa-angle-left"></i></a>
+                        <ul class="treeview-menu">
+
+                            <li><a {{ Request::routeIs('admin.setting.footer.label') ? 'style=color:#54c6d0;' : '' }}
+                                    href="{{ route('admin.roles') }}">نقش ها</a></li>
+
+                            <li><a {{ Request::routeIs('admin.permissions') ? 'style=color:#54c6d0;' : '' }}
+                                    href="{{ route('admin.permissions') }}">سطح دسترسی</a></li>
+                        </ul>
+                    </li>
+
+                    {{--                     /<li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li>
+ --}}
+                </ul>
             </nav>
         </div>
     </div>

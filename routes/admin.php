@@ -30,3 +30,8 @@ Route::get('/settings/footer/updatemenu/{footermenu}' , \App\Livewire\Admin\Sett
 Route::get('/settings/footer/namad' , \App\Livewire\Admin\Settings\Footer\Namad::class)->name('admin.setting.footer.namad');
 // logs
 Route::get('/settings/logs' , \App\Livewire\Admin\Settings\Log::class)->name('admin.log');
+// permissions
+Route::get('/permissions' , \App\Livewire\Admin\Permissions\Index::class)->name('admin.permissions');
+// roles
+Route::get('/roles' , \App\Livewire\Admin\Roles\Index::class)->name('admin.roles');
+
