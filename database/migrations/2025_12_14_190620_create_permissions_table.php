@@ -4,11 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('permissions', function (Blueprint $table) {
@@ -25,36 +21,33 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permissions_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('permissions_id');
-            $table->foreign('permissions_id')->references('id')->on('laravel_store.permissions');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('laravel_store.users');
+        Schema::create('permission_user', function (Blueprint $table) {
+            $table->foreignId('permission_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['permission_id', 'user_id']);
         });
 
         Schema::create('role_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('laravel_store.roles');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('laravel_store.users');
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['role_id', 'user_id']);
         });
 
         Schema::create('permission_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('laravel_store.roles');
-            $table->unsignedBigInteger('permissions_id');
-            $table->foreign('permissions_id')->references('id')->on('laravel_store.permissions');
+            $table->foreignId('permission_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['permission_id', 'role_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('permission_role');
         Schema::dropIfExists('role_user');
-        Schema::dropIfExists('permissions_user');
+        Schema::dropIfExists('permission_user');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('permissions');
     }

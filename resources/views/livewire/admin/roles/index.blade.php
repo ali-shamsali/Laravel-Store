@@ -10,22 +10,23 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form>
+                                    <form wire:model.perevent='roleForm'>
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">عنوان نقش (لاتین):</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail111">
+                                            <input wire:model.defer='title' type="text" class="form-control"
+                                                id="exampleInputEmail111">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">توضیحات نقش:</label>
                                             <select class="js-example-basic-single form-control" name=""
-                                                style="width: 100%;">
+                                                style="width: 100%;" wire:model='desc'>
                                                 <option value="AL">Alabama</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">سطح دسترسی:</label>
                                             <select class="js-example-basic-single form-control" multiple="multiple"
-                                                name="" style="width: 100%;">
+                                                name="" style="width: 100%;" wire:model='permissions[]'>
                                                 <option value="AL">Alabama</option>
                                             </select>
                                         </div>
@@ -61,17 +62,24 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td>نام کاربری</td>
-                                            <td>سیستم</td>
-                                            <td>شرکت</td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-delete zmdi-custom"></i></a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($roles as $role)
+                                            <tr>
+                                                <td>{{ $role->title }}</td>
+                                                <td>{{ $role->desc }}</td>
+                                                <td>
+
+                                                    @foreach ($role->permissions as $permissions)
+                                                        <span>{{ $permissions->title }}</span>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="zmdi zmdi-delete zmdi-custom"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 
