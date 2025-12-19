@@ -10,29 +10,34 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form wire:model.perevent='roleForm'>
+                                    <form wire:submit.prevent="roleForm">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail111">عنوان نقش (لاتین):</label>
-                                            <input wire:model.defer='title' type="text" class="form-control"
-                                                id="exampleInputEmail111">
+                                            <label for="title">عنوان نقش (لاتین):</label>
+                                            <input wire:model.defer='title' type="text" class="form-control" id="title">
+                                            @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail12">توضیحات نقش:</label>
-                                            <select class="js-example-basic-single form-control" name=""
-                                                style="width: 100%;" wire:model='desc'>
-                                                <option value="AL">Alabama</option>
+                                            <label for="desc">توضیحات نقش:</label>
+                                            <input wire:model.defer='desc' type="text" class="form-control" id="desc">
+                                            @error('desc') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="permissions">سطح دسترسی:</label>
+                                            <select class="form-control" multiple wire:model.lazy='selectedPermissions'>
+                                                @foreach ($permissions as $permission)
+                                                    <option value="{{ $permission->id }}">{{ $permission->title }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail12">سطح دسترسی:</label>
-                                            <select class="js-example-basic-single form-control" multiple="multiple"
-                                                name="" style="width: 100%;" wire:model='permissions[]'>
-                                                <option value="AL">Alabama</option>
-                                            </select>
-                                        </div>
+                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2">
+                                            <i class="fa fa-save"></i> ذخیره
+                                        </button>
 
-                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2"
-                                            style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
+                                        @if (session()->has('message'))
+                                            <div class="alert alert-success mt-2">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
@@ -43,15 +48,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست نقش ها</h4>
-                                <button type="button" class="btn btn-danger mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله</button>
-                                <button type="button" class="btn btn-primary mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
-                                    اکسل</button>
                                 <hr>
-
-                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                <table class="table table-striped dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>عنوان نقش</th>
@@ -60,34 +58,32 @@
                                             <th>عملیات</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         @foreach ($roles as $role)
                                             <tr>
                                                 <td>{{ $role->title }}</td>
                                                 <td>{{ $role->desc }}</td>
                                                 <td>
-
-                                                    @foreach ($role->permissions as $permissions)
-                                                        <span>{{ $permissions->title }}</span>
+                                                    @foreach ($role->permissions as $permission)
+                                                        <span class="badge badge-info">{{ $permission->title }}</span>
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="zmdi zmdi-delete zmdi-custom"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon">
+                                                        <i class="zmdi zmdi-edit zmdi-custom"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="action-icon">
+                                                        <i class="zmdi zmdi-delete zmdi-custom"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- end row-->
             </div>
         </div>
     </div>

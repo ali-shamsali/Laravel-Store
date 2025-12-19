@@ -9,7 +9,7 @@ use App\Models\admin\permissions\permission;
 
 class Index extends Component
 {
-    public $title, $type, $isActive, $image;
+    public $title, $desc, $selectedPermissions = [];
     public role $role;
     public $search = '';
     public $deleteId;
@@ -17,25 +17,25 @@ class Index extends Component
     public function mount()
     {
         $this->role = new role();
-
     }
 
     protected $rules = [
         'title' => 'required',
         'desc'  => 'required',
-        'permissions' => 'nullable',
+        'selectedPermissions' => 'nullable|array',
     ];
 
     public function roleForm()
     {
         $this->validate();
 
-        $this->role->title       = $this->title;
-        $this->role->desc        = $this->desc;
-        $this->role->permissions = $this->permissions;
-
-        $this->role->permissions()->sync();
+        $this->role->title = $this->title;
+        $this->role->desc  = $this->desc;
         $this->role->save();
+
+        if ($this->selectedPermissions) {
+            $this->role->permissions()->sync($this->selectedPermissions );
+        }
 
         $this->role = new role();
 
@@ -43,8 +43,7 @@ class Index extends Component
         $desc = 'نقش توسط کاربر ذخیره شد';
         Log::MakeLog('insert', $desc);
 
-
-        $this->reset(['title', 'type', 'isActive']);
+        $this->reset(['title', 'desc', 'selectedPermissions']);
     }
 
     public function deleteRole($id)
@@ -54,12 +53,11 @@ class Index extends Component
 
     public function deleteRecord()
     {
-        $logo = role::find($this->deleteId);
-        $logo->delete();
+        $role = role::find($this->deleteId);
+        $role->delete();
         $desc = 'نقش با موفقیت توسط کاربر حذف شد!';
         Log::MakeLog('delete', $desc);
     }
-
 
     public function render()
     {
