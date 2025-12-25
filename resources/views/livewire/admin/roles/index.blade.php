@@ -72,9 +72,11 @@
                                                     <a href="javascript:void(0);" class="action-icon">
                                                         <i class="zmdi zmdi-edit zmdi-custom"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="action-icon">
-                                                        <i class="zmdi zmdi-delete zmdi-custom"></i>
-                                                    </a>
+                                                    <button wire:click='deleteRecord({{ $role->id }})'
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        class="action-icon"> <i
+                                                            class="zmdi zmdi-delete zmdi-custom"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach

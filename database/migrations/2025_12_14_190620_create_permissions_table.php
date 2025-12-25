@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('desc');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('permission_user', function (Blueprint $table) {

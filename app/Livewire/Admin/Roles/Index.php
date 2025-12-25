@@ -34,7 +34,7 @@ class Index extends Component
         $this->role->save();
 
         if ($this->selectedPermissions) {
-            $this->role->permissions()->sync($this->selectedPermissions );
+            $this->role->permissions()->sync($this->selectedPermissions);
         }
 
         $this->role = new role();
@@ -51,9 +51,11 @@ class Index extends Component
         $this->deleteId = $id;
     }
 
-    public function deleteRecord()
+    public function deleteRecord($id)
     {
-        $role = role::find($this->deleteId);
+        $role = role::find($id);
+        $role->permissions()->detach();
+        $role->user()->detach();
         $role->delete();
         $desc = 'نقش با موفقیت توسط کاربر حذف شد!';
         Log::MakeLog('delete', $desc);
@@ -63,11 +65,11 @@ class Index extends Component
     {
         if ($this->search != '') {
             $roles = role::where('title', 'like', '%' . $this->search . '%')->paginate(2);
-            $permissions = permission::all() ;
+            $permissions = permission::all();
         } else {
             $roles = role::all();
-            $permissions = permission::all() ;
+            $permissions = permission::all();
         }
-        return view('livewire.admin.roles.index', compact('roles','permissions'));
+        return view('livewire.admin.roles.index', compact('roles', 'permissions'));
     }
 }
